@@ -36,9 +36,9 @@ $(document).ready(function() {
         }
         
         // clear any old content
+        $("#today").empty();
 
-        // create html content for current weather (create elements on the fly)
-        // need one for: city, date, temperature, humidity, wind speed, and uv index
+        // This creates html content for current weather (create elements on the fly)
 
         var weatherDiv = $("<div>");
 
@@ -88,9 +88,7 @@ $(document).ready(function() {
       }
     });
   }
-  
-  // Make seperate VAR that holds FORECAST in the url, not WEATHER
-  
+  // 5 Day forecast requires a slightly different URL
   var forecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=";
 
   function getForecast(searchValue) {
@@ -109,9 +107,7 @@ $(document).ready(function() {
             // create html elements for a bootstrap card
             
             var card = $("<div>").addClass("card-body");
-            
-            //THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, and the humidity
-            
+                        
             //  Current Date
             var today = new Date();
             var dd = String(today.getDate()).padStart(2, '0');
