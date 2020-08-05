@@ -6,7 +6,7 @@ $(document).ready(function() {
   $("#search-button").on("click", function() {
     var searchValue = $("#search-value").val();
     
-    // clear input box
+    // clears input box
     $("#search-value").val("");
   
     searchWeather(searchValue);
@@ -35,7 +35,7 @@ $(document).ready(function() {
           makeRow(searchValue);
         }
         
-        // clear any old content
+        // clears any old content
         $("#today").empty();
 
         // This creates html content for current weather (create elements on the fly)
@@ -106,7 +106,7 @@ $(document).ready(function() {
           if (data.list[i].dt_txt.indexOf("15:00:00") !== -1) {
             // create html elements for a bootstrap card
             
-            var card = $("<div>").addClass("card-body");
+            var card = $("<div>").addClass("card-body-fore");
                         
             //  Current Date
             var today = new Date();
@@ -140,18 +140,33 @@ $(document).ready(function() {
     });
   }
 
+  var apiKeyUV ="7ef3b1787fac18535ef4cdc8f06930e6"
+
   function getUVIndex(lat, lon) {
     $.ajax({
-      type: "",
-      url: "" + lat + "&lon=" + lon,
+      type: "GET",
+      url: "http://api.openweathermap.org/data/2.5/uvi?appid="+ apiKeyUV + "&lat=" + lat + "&lon=" + lon,
       dataType: "json",
       success: function(data) {
         var uv = $("<p>").text("UV Index: ");
         var btn = $("<span>").addClass("btn btn-sm").text(data.value);
-        
+        var uvValue = parseInt(data.value);
+
         // change color depending on uv value
+        // 0 - 2 is favorable (default is green)
+        // 3 - 5 is moderate
+        // Over 6 is Severe
         
-        $("#today .card-body").append(uv.append(btn));
+        if(uvValue > 6) {
+          $(btn).attr("style", "background-color:red");
+          console.log("uv severe");
+          
+        }else if(uvValue > 3) {
+          $(btn).attr("style", "background-color:yellow");
+          console.log("uv moderate");
+        };
+
+        $("#today").append(uv.append(btn));
       }
     });
   }
