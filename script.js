@@ -1,5 +1,5 @@
 
-var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=";
+var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=";
 var apiKey = "&units=imperial&appid=7ef3b1787fac18535ef4cdc8f06930e6";
 
 $(document).ready(function() {
@@ -89,7 +89,7 @@ $(document).ready(function() {
     });
   }
   // 5 Day forecast requires a slightly different URL
-  var forecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=";
+  var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=";
 
   function getForecast(searchValue) {
     $.ajax({
@@ -145,7 +145,7 @@ $(document).ready(function() {
   function getUVIndex(lat, lon) {
     $.ajax({
       type: "GET",
-      url: "http://api.openweathermap.org/data/2.5/uvi?appid="+ apiKeyUV + "&lat=" + lat + "&lon=" + lon,
+      url: "https://api.openweathermap.org/data/2.5/uvi?appid="+ apiKeyUV + "&lat=" + lat + "&lon=" + lon,
       dataType: "json",
       success: function(data) {
         var uv = $("<p>").text("UV Index: ");
