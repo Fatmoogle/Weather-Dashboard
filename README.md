@@ -1,6 +1,9 @@
 Link: https://fatmoogle.github.io/Weather-Dashboard
 
 # Weather-Dashboard
+
+Link: https://fatmoogle.github.io/Weather-Dashboard
+
 Weather application that allows user to search for the current and 5 day forecast of a city.
 
 This was a project designed to get used to navigating and using an API while updating the page with specific results. This project used the OpenWeather API. 
